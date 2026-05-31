@@ -1,0 +1,21 @@
+import PyQt6.QtWidgets
+import PyQt6.uic
+
+app = PyQt6.QtWidgets.QApplication([])
+tela = PyQt6.uic.loadUi("imc.ui")
+
+def calcular_imc():
+    try:
+        peso = float(tela.txt_peso.text())
+        altura = float(tela.txt_altura.text())
+
+        imc = peso / (altura * altura)
+
+        tela.lbl_resultado.setText(f"IMC:{imc}")
+    except Exception:
+        tela.lbl_resultado.setText("Erro: verifica ai ")
+
+tela.btn_calcular.clicked.connect(calcular_imc)
+
+tela.show()
+app.exec()
